@@ -1,0 +1,5 @@
+numpy==1.25.0
+spacy
+scikit-learn
+beautifulsoup4
+lxml
