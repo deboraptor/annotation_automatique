@@ -1,6 +1,9 @@
 import spacy
 from sklearn.metrics import precision_score, recall_score, f1_score
 from bs4 import BeautifulSoup as bs
+from itertools import chain
+
+from annexe import resultats_norme_moi
 
 def collecter_soup_norme():
     # Je fais le traitement avec spaCy
@@ -19,6 +22,19 @@ def collecter_soup_norme():
         ligne_pos = token.pos_
         ligne_dep = token.dep_
         lignes.append([ligne_token, ligne_lemme, ligne_pos, ligne_dep])
+        # Je crée une liste de tuples pour que ce soit plus simple à faire la f-mesure
+        resultats_norme_machine = [["POS", ligne_pos]]
+        print(resultats_norme_machine)
+        
+    resultats_norme_machine_aplatie = list(chain(*resultats_norme_machine))
+    resultats_norme_moi_aplatie = list(chain(*resultats_norme_moi))
+
+    # precision = precision_score(resultats_norme_machine_aplatie, resultats_norme_moi_aplatie, average="micro")
+    # print("Précision :", precision)
+    # rappel = recall_score(resultats_norme_machine_aplatie, resultats_norme_moi_aplatie, average="micro")
+    # print("Rappel :", rappel)
+    # fmesure = f1_score(resultats_norme_machine_aplatie, resultats_norme_moi_aplatie, average="micro")
+    # print("F-mesure :", fmesure)
 
     # Là je modifie le code html pour mettre des modifications CSS notamment
     code_html= """
