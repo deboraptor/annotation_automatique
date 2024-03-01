@@ -35,6 +35,7 @@ def collecter_soup_norme():
         # Je crée une liste de tuples pour que ce soit plus simple à faire la f-mesure
         tuple_res = (ligne_token, ligne_lemme, ligne_pos)
         resultats_norme_machine.append(tuple_res)
+    # print(resultats_norme_machine)
             
     # On compare les deux listes pour faire la f-mesure
     resultats_norme_machine_bin = []
