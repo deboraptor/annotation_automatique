@@ -3,3 +3,4 @@ spacy
 scikit-learn
 beautifulsoup4
 lxml
+stanza

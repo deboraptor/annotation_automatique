@@ -1,9 +1,18 @@
 import spacy
+import stanza
 from sklearn.metrics import precision_score, recall_score, f1_score
 from bs4 import BeautifulSoup as bs
 
 from annexe import resultats_norme_moi
 from annexe import resultats_non_norme_moi
+
+def module_stanza():
+    stanza.download('fr')
+    nlp = stanza.Pipeline(lang='fr', processors='tokenize,mwt,pos,lemma,depparse')
+    doc = nlp("Le renard brun rapide saute par-dessus le chien paresseux.")
+    for sent in doc.sentences:
+        for token in sent.tokens:
+            print(token.text, token.deprel)
 
 def collecter_soup_norme():
     # Je fais le traitement avec spaCy
