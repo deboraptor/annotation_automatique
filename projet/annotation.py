@@ -1,9 +1,9 @@
 import spacy
 from sklearn.metrics import precision_score, recall_score, f1_score
 from bs4 import BeautifulSoup as bs
-from itertools import chain
 
 from annexe import resultats_norme_moi
+from annexe import resultats_non_norme_moi
 
 def collecter_soup_norme():
     # Je fais le traitement avec spaCy
@@ -16,6 +16,7 @@ def collecter_soup_norme():
 
     # Contenu des colonnes
     lignes = []
+    resultats_norme_machine = []
     for token in doc:
         ligne_token = token.text
         ligne_lemme = token.lemma_
@@ -23,18 +24,28 @@ def collecter_soup_norme():
         ligne_dep = token.dep_
         lignes.append([ligne_token, ligne_lemme, ligne_pos, ligne_dep])
         # Je crée une liste de tuples pour que ce soit plus simple à faire la f-mesure
-        resultats_norme_machine = [["POS", ligne_pos]]
-        print(resultats_norme_machine)
-        
-    resultats_norme_machine_aplatie = list(chain(*resultats_norme_machine))
-    resultats_norme_moi_aplatie = list(chain(*resultats_norme_moi))
+        tuple_res = (ligne_token, ligne_lemme, ligne_pos)
+        resultats_norme_machine.append(tuple_res)
+            
+    # On compare les deux listes pour faire la f-mesure
+    resultats_norme_machine_bin = []
+    resultats_norme_moi_bin = [(1, 1, 1) for i in range(len(resultats_norme_moi))]
+    for i in range(len(resultats_norme_machine)):
+        liste_inter = []
+        for j in range(len(resultats_norme_machine[i])):
+            if resultats_norme_machine[i][j] == resultats_norme_moi[i][j]:
+                liste_inter.append(1)
+            else:
+                liste_inter.append(0)
+        resultats_norme_machine_bin.append(tuple(liste_inter))
 
-    # precision = precision_score(resultats_norme_machine_aplatie, resultats_norme_moi_aplatie, average="micro")
-    # print("Précision :", precision)
-    # rappel = recall_score(resultats_norme_machine_aplatie, resultats_norme_moi_aplatie, average="micro")
-    # print("Rappel :", rappel)
-    # fmesure = f1_score(resultats_norme_machine_aplatie, resultats_norme_moi_aplatie, average="micro")
-    # print("F-mesure :", fmesure)
+    # Calculer les métriques de précision, rappel et F-mesure
+    precision = precision_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
+    print("\nTexte normé :\nPrécision :", precision)
+    rappel = recall_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
+    print("Rappel :", rappel)
+    fmesure = f1_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
+    print("F-mesure :", fmesure)
 
     # Là je modifie le code html pour mettre des modifications CSS notamment
     code_html= """
@@ -102,10 +113,10 @@ def collecter_soup_norme():
     tbody = soup_norme.new_tag('tbody')
     table.append(tbody)
 
-    for row in lignes:
+    for ligne in lignes:
         tr = soup_norme.new_tag('tr')
         tbody.append(tr)
-        for cell in row:
+        for cell in ligne:
             td = soup_norme.new_tag('td')
             td.string = cell
             tr.append(td)
@@ -145,12 +156,36 @@ def collecter_soup_non_norme():
 
     # Contenu des colonnes
     lignes = []
+    resultats_non_norme_machine = []
     for token in doc:
         ligne_token = token.text
         ligne_lemme = token.lemma_
         ligne_pos = token.pos_
         ligne_dep = token.dep_
         lignes.append([ligne_token, ligne_lemme, ligne_pos, ligne_dep])
+        # Je crée une liste de tuples pour que ce soit plus simple à faire la f-mesure
+        tuple_res = (ligne_token, ligne_lemme, ligne_pos)
+        resultats_non_norme_machine.append(tuple_res)
+
+    # On compare les deux listes pour faire la f-mesure
+    resultats_non_norme_machine_bin = []
+    resultats_non_norme_moi_bin = [(1, 1, 1) for i in range(len(resultats_non_norme_moi))]
+    for i in range(len(resultats_non_norme_machine)):
+        liste_inter = []
+        for j in range(len(resultats_non_norme_machine[i])):
+            if resultats_non_norme_machine[i][j] == resultats_non_norme_moi[i][j]:
+                liste_inter.append(1)
+            else:
+                liste_inter.append(0)
+        resultats_non_norme_machine_bin.append(tuple(liste_inter))
+
+    # Calculer les métriques de précision, rappel et F-mesure
+    precision = precision_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
+    print("\nTexte non normé :\nPrécision :", precision)
+    rappel = recall_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
+    print("Rappel :", rappel)
+    fmesure = f1_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
+    print("F-mesure :", fmesure)
 
     # Là je modifie le code html pour mettre des modifications CSS notamment
     code_html= """
@@ -212,10 +247,10 @@ def collecter_soup_non_norme():
     tbody = soup_non_norme.new_tag('tbody')
     table.append(tbody)
 
-    for row in lignes:
+    for ligne in lignes:
         tr = soup_non_norme.new_tag('tr')
         tbody.append(tr)
-        for cell in row:
+        for cell in ligne:
             td = soup_non_norme.new_tag('td')
             td.string = cell
             tr.append(td)
