@@ -1,18 +1,9 @@
 import spacy
-# import stanza
 from sklearn.metrics import precision_score, recall_score, f1_score
 from bs4 import BeautifulSoup as bs
 
 from annexe import resultats_norme_moi
 from annexe import resultats_non_norme_moi
-
-# def module_stanza():
-#     stanza.download('fr')
-#     nlp = stanza.Pipeline(lang='fr', processors='tokenize,mwt,pos,lemma,depparse')
-#     doc = nlp("Le renard brun rapide saute par-dessus le chien paresseux.")
-#     for sent in doc.sentences:
-#         for token in sent.tokens:
-#             print(token.text, token.deprel)
 
 def collecter_page1():
     # Je fais le traitement avec spaCypy
@@ -49,15 +40,15 @@ def collecter_page1():
                 liste_inter.append(0)
         resultats_norme_machine_bin.append(tuple(liste_inter))
     
-    with open("../page1.html", "r") as fichier_page1:
-        page1 = bs(fichier_page1.read(), "lxml")
+    with open("../page1.html", "r") as fichier_page1_metrique:
+        page1_metrique = bs(fichier_page1_metrique.read(), "lxml")
 
     # Calculer les métriques de précision, rappel et F-mesure
     precision = precision_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
     rappel = recall_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
     fmesure = f1_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
 
-    tableau_metrique = page1.find('table', {'id': 'metrique'})
+    tableau_metrique = page1_metrique.find('table', {'id': 'metrique'})
 
     cellule = tableau_metrique.find('td', {'class': 'rappel_norme'})
     cellule.string = "Rappel : " + str(rappel)
@@ -67,122 +58,46 @@ def collecter_page1():
     cellule.string = "F-mesure : " + str(fmesure)
 
     with open("../page1.html", "w") as fichier_metrique:
-        fichier_metrique.write(str(page1))
-
-    # Là je modifie le code html pour mettre des modifications CSS notamment
-    # code_html= """
-    # <html>
-    # <head>
-    #     <meta charset="UTF-8">
-    #     <title>Annotation automatique : résultats</title>
-    #     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    #     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    #     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulmaswatch.min.css">
-    #     <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/pulse/bulmaswatch.min.css">
-    #     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulmaswatch.min.css">
-    #     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
-    #     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    #     <script src="index.js"></script>
-    # </head>
-    # <body>
-    #     <div>
-    #         <label for="pages">Choisir un module : </label>
-    #         <select id="pages" onchange="changePage(this.value)">
-    #             <option value="page1">Texte non normé</option>
-    #             <option value="page2">Texte normé</option>
-    #         </select>
-    #         <div id="page1" class="section">
-    #             <table></table>
-    #         </div>
-    #         <div id="page2" class="section">
-    #             <table></table>
-    #         </div>
-    #     </div>
-    #     <script>
-    #         function changePage(page) {
-    #             var sections = document.getElementsByClassName('section');
-
-    #             for (var i = 0; i < sections.length; i++) {
-    #                 sections[i].style.display = 'none';
-    #             }
-
-    #             document.getElementById(page).style.display = 'block';
-    #         }
-    #     </script>
-    # </body>
-    # </html>
-    # """
-
-    # lxml = analyseur syntaxique (pas besoin de l'importer)
-    # Il va permettre de modifier le code HTML avec la variable page1
-    # page1 = bs(code_html, 'lxml')
-    # table = page1.table
-
-    #######################################################
-
-    # with open("../page1.html", "r") as fichier_page1:
-    #     page1 = bs(fichier_page1.read(), "lxml")
-
-    # table = page1.find('table', {'id': 'table1'})
-
-    # # On modifie les noms de colonnes
-    # nom_colonnes = ["Mot (" + str(corpus_count) + " mots)", 'Lemme', 'POS', 'DEP']
-    # thead = page1.new_tag('thead')
-    # table.append(thead)
-
-    # tr_head = page1.new_tag('tr')
-    # thead.append(tr_head)
-
-    # for header in nom_colonnes:
-    #     th = page1.new_tag('th')
-    #     th.string = header
-    #     tr_head.append(th)
-
-    # # On ajoute aux colonnes le contenu du texte annoté
-    # tbody = page1.new_tag('tbody')
-    # table.append(tbody)
-
-    # for ligne in lignes:
-    #     tr = page1.new_tag('tr')
-    #     tbody.append(tr)
-    #     for cell in ligne:
-    #         td = page1.new_tag('td')
-    #         td.string = cell
-    #         tr.append(td)
+        fichier_metrique.write(str(page1_metrique))
     
-    # with open("page1.html", "w") as fichier_page1:
-    #     fichier_page1.write(str(page1))
+    ##############################
+
+    with open("../page1.html", "r") as fichier_page1_tableau:
+        page1_tableau = bs(fichier_page1_tableau.read(), "lxml")
+
+    table = page1_tableau.find('table', {'id': 'table1'})
+
+    # On modifie les noms de colonnes
+    nom_colonnes = ["Mot (" + str(corpus_count) + " mots)", 'Lemme', 'POS', 'DEP']
+    thead = page1_tableau.new_tag('thead')
+    table.append(thead)
+
+    tr_head = page1_tableau.new_tag('tr')
+    thead.append(tr_head)
+
+    for header in nom_colonnes:
+        th = page1_tableau.new_tag('th')
+        th.string = header
+        tr_head.append(th)
+
+    # On ajoute aux colonnes le contenu du texte annoté
+    tbody = page1_tableau.new_tag('tbody')
+    table.append(tbody)
+
+    for ligne in lignes:
+        tr = page1_tableau.new_tag('tr')
+        tbody.append(tr)
+        for cell in ligne:
+            td = page1_tableau.new_tag('td')
+            td.string = cell
+            tr.append(td)
+    
+    with open("../page1.html", "w") as fichier_page1_tableau:
+        fichier_page1_tableau.write(str(page1_tableau))
         
 
 
 
-
-
-
-    # On crée la balise <style> pour insérer du CSS
-    # style = page1.new_tag('style')
-    # style.string = '''
-    # table {
-    #     width: 100%;
-    #     border-collapse: collapse;
-    #     border: 1px solid #ddd;
-    # }
-
-    # th, td {
-    #     border: 1px solid black;
-    #     padding: 8px;
-    #     text-align: left;
-    # }
-
-    # th {
-    #     background-color: #f2f2f2;
-    # }
-    # '''
-
-    # # On ajoute la feuille de style à page1
-    # page1.body.insert(0, style)
-
-    # return page1
 
 def collecter_soup_non_norme():
     with open("texte_non_norme.txt") as fichier_corpus_non_norme:
@@ -219,12 +134,27 @@ def collecter_soup_non_norme():
 
     # Calculer les métriques de précision, rappel et F-mesure
     precision = precision_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
-    print("\nTexte non normé :\nPrécision :", precision)
     rappel = recall_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
-    print("Rappel :", rappel)
     fmesure = f1_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
-    print("F-mesure :", fmesure)
 
+    with open("../page1.html", "r") as fichier_page1_metrique:
+        page1_metrique = bs(fichier_page1_metrique.read(), "lxml")
+
+    tableau_metrique = page1_metrique.find('table', {'id': 'metrique'})
+
+    cellule = tableau_metrique.find('td', {'class': 'rappel_non_norme'})
+    cellule.string = "Rappel : " + str(rappel)
+    cellule = tableau_metrique.find('td', {'class': 'precision_non_norme'})
+    cellule.string = "Précision : " + str(precision)
+    cellule = tableau_metrique.find('td', {'class': 'fmesure_non_norme'})
+    cellule.string = "F-mesure : " + str(fmesure)
+
+    with open("../page1.html", "w") as fichier_metrique:
+        fichier_metrique.write(str(page1_metrique))
+
+
+    ##################################################################################
+        
     # # Là je modifie le code html pour mettre des modifications CSS notamment
     # code_html= """
     # <html>

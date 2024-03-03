@@ -3,56 +3,63 @@
 <head>
 <title>SpaCy</title>
 <style>
-        table {
-            display: inline-block;
-            margin-right: 20px; 
-            width: 100%;
-        }
+      table {
+        display: inline-block;
+        margin-right: 20px;
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
 
-        th, td {
-            text-align: left; 
-            padding: 8px; 
-        }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
 
-        th:first-child, td:first-child {
-            width: 30%; 
-        }
+      th:first-child,
+      td:first-child {
+        width: 30%;
+      }
 
-        th:nth-child(2), td:nth-child(2) {
-            width: 40%; 
-        }
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 40%;
+      }
 
-        th:nth-child(3), td:nth-child(3) {
-            width: 30%;
-        }
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 30%;
+      }
     </style>
 </head>
 <body>
-<a href="test.html">Retour à l'accueil</a>
+<a href="index.html">Retour à l'accueil</a>
 <h1>Module SpaCy</h1>
-<table border="1">
+<table border="1" id="metrique">
 <thead>
 <tr>
 <th>Texte normé</th>
 <th>Texte non-normé</th>
 </tr>
 <tr>
-<td>Rappel :</td>
-<td>Rappel :</td>
+<td class="rappel_norme">Rappel : 1.0</td>
+<td class="rappel_non_norme">Rappel : 1.0</td>
 </tr>
 <tr>
-<td>Précision : </td>
-<td>précision : </td>
+<td class="precision_norme">Précision : 0.964562569213732</td>
+<td class="precision_non_norme">Précision : 0.9559748427672956</td>
 </tr>
 <tr>
-<td>F-mesure : </td>
-<td>F-mesure : </td>
+<td class="fmesure_norme">F-mesure : 0.9819616685456595</td>
+<td class="fmesure_non_norme">F-mesure : 0.977491961414791</td>
 </tr>
 </thead>
 </table>
 <br/>
 <br/>
-<div style="position:absolute; left:10%; ">
+<div style="position: absolute; left: 10%">
 <table border="1" id="table1">
 <tr>
 <th>Mot</th>
@@ -61,16 +68,10 @@
 <th>DEP</th>
 </tr>
 <tr>
-<td>texte</td>
-<td>texte</td>
-<td>texte</td>
-<td>texte</td>
-</tr>
-<tr>
-<td>texte</td>
-<td>texte</td>
-<td>texte</td>
-<td>texte</td>
+<td class="mot">texte</td>
+<td class="lemme">texte</td>
+<td class="pos">texte</td>
+<td class="dep">texte</td>
 </tr>
 <thead><tr><th>Mot (234 mots)</th><th>Lemme</th><th>POS</th><th>DEP</th></tr></thead><tbody><tr><td>Henry</td><td>Henry</td><td>PROPN</td><td>nsubj</td></tr><tr><td>William</td><td>William</td><td>PROPN</td><td>nmod</td></tr><tr><td>Dalgliesh</td><td>Dalgliesh</td><td>PROPN</td><td>appos</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>né</td><td>naître</td><td>VERB</td><td>acl</td></tr><tr><td>le</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>5</td><td>5</td><td>NUM</td><td>obl:mod</td></tr><tr><td>mai</td><td>mai</td><td>NOUN</td><td>nmod</td></tr><tr><td>1983</td><td>1983</td><td>NUM</td><td>nmod</td></tr><tr><td>à</td><td>à</td><td>ADP</td><td>case</td></tr><tr><td>Saint-Hélier</td><td>Saint-Hélier</td><td>PROPN</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>est</td><td>être</td><td>AUX</td><td>cop</td></tr><tr><td>un</td><td>un</td><td>DET</td><td>det</td></tr><tr><td>acteur</td><td>acteur</td><td>NOUN</td><td>ROOT</td></tr><tr><td>britannique</td><td>britannique</td><td>ADJ</td><td>amod</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>
 
@@ -90,7 +91,7 @@
 
 </td><td>SPACE</td><td>dep</td></tr></tbody></table>
 </div>
-<div style="position:absolute; right:10%; ">
+<div style="position: absolute; right: 10%">
 <table border="1" id="table2">
 <tr>
 <th>Mot</th>
