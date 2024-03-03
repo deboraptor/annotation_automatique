@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SpaCy</title>
+<style>
+      table {
+        display: inline-block;
+        margin-right: 20px;
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th:first-child,
+      td:first-child {
+        width: 30%;
+      }
+
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 40%;
+      }
+
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 30%;
+      }
+    </style>
+</head>
+<body>
+<a href="index.html">Retour à l'accueil</a>
+<h1>Module SpaCy</h1>
+<table border="1" id="metrique">
+<thead>
+<tr>
+<th>Texte normé</th>
+<th>Texte non-normé</th>
+</tr>
+<tr>
+<td class="rappel_norme">Rappel : 1.0</td>
+<td class="rappel_non_norme">Rappel : 1.0</td>
+</tr>
+<tr>
+<td class="precision_norme">Précision : 0.964562569213732</td>
+<td class="precision_non_norme">Précision : 0.9559748427672956</td>
+</tr>
+<tr>
+<td class="fmesure_norme">F-mesure : 0.9819616685456595</td>
+<td class="fmesure_non_norme">F-mesure : 0.977491961414791</td>
+</tr>
+</thead>
+</table>
+<br/>
+<br/>
+<div style="position: absolute; left: 10%">
+<table border="1" id="table1">
+<tr>
+<th>Mot</th>
+<th>Lemme</th>
+<th>POS</th>
+<th>DEP</th>
+</tr>
+<tr>
+<td class="mot">texte</td>
+<td class="lemme">texte</td>
+<td class="pos">texte</td>
+<td class="dep">texte</td>
+</tr>
+<thead><tr><th>Mot (234 mots)</th><th>Lemme</th><th>POS</th><th>DEP</th></tr></thead><tbody><tr><td>Henry</td><td>Henry</td><td>PROPN</td><td>nsubj</td></tr><tr><td>William</td><td>William</td><td>PROPN</td><td>nmod</td></tr><tr><td>Dalgliesh</td><td>Dalgliesh</td><td>PROPN</td><td>appos</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>né</td><td>naître</td><td>VERB</td><td>acl</td></tr><tr><td>le</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>5</td><td>5</td><td>NUM</td><td>obl:mod</td></tr><tr><td>mai</td><td>mai</td><td>NOUN</td><td>nmod</td></tr><tr><td>1983</td><td>1983</td><td>NUM</td><td>nmod</td></tr><tr><td>à</td><td>à</td><td>ADP</td><td>case</td></tr><tr><td>Saint-Hélier</td><td>Saint-Hélier</td><td>PROPN</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>est</td><td>être</td><td>AUX</td><td>cop</td></tr><tr><td>un</td><td>un</td><td>DET</td><td>det</td></tr><tr><td>acteur</td><td>acteur</td><td>NOUN</td><td>ROOT</td></tr><tr><td>britannique</td><td>britannique</td><td>ADJ</td><td>amod</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>
+
+</td><td>
+
+</td><td>SPACE</td><td>dep</td></tr><tr><td>Il</td><td>il</td><td>PRON</td><td>nsubj:pass</td></tr><tr><td>est</td><td>être</td><td>AUX</td><td>aux:pass</td></tr><tr><td>principalement</td><td>principalement</td><td>ADV</td><td>advmod</td></tr><tr><td>connu</td><td>connaître</td><td>VERB</td><td>ROOT</td></tr><tr><td>pour</td><td>pour</td><td>ADP</td><td>case</td></tr><tr><td>son</td><td>son</td><td>DET</td><td>det</td></tr><tr><td>rôle</td><td>rôle</td><td>NOUN</td><td>obl:mod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Charles</td><td>Charles</td><td>PROPN</td><td>nmod</td></tr><tr><td>Brandon</td><td>Brandon</td><td>PROPN</td><td>flat:name</td></tr><tr><td>dans</td><td>dans</td><td>ADP</td><td>case</td></tr><tr><td>Les</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>Tudors</td><td>tudor</td><td>NOUN</td><td>obl:mod</td></tr><tr><td>puis</td><td>pouvoir</td><td>CCONJ</td><td>cc</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Superman</td><td>Superman</td><td>PROPN</td><td>conj</td></tr><tr><td>dans</td><td>dans</td><td>ADP</td><td>case</td></tr><tr><td>cinq</td><td>cinq</td><td>NUM</td><td>nummod</td></tr><tr><td>films</td><td>film</td><td>NOUN</td><td>obl:mod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>l'</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>univers</td><td>univers</td><td>NOUN</td><td>nmod</td></tr><tr><td>cinématographique</td><td>cinématographique</td><td>ADJ</td><td>amod</td></tr><tr><td>DC</td><td>DC</td><td>PROPN</td><td>nmod</td></tr><tr><td>:</td><td>:</td><td>PUNCT</td><td>punct</td></tr><tr><td>Man</td><td>man</td><td>NOUN</td><td>ROOT</td></tr><tr><td>of</td><td>of</td><td>X</td><td>case</td></tr><tr><td>Steel</td><td>Steel</td><td>PROPN</td><td>nmod</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>2013</td><td>2013</td><td>NUM</td><td>nummod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>Batman</td><td>Batman</td><td>PROPN</td><td>conj</td></tr><tr><td>v</td><td>v</td><td>AUX</td><td>aux:tense</td></tr><tr><td>Superman</td><td>Superman</td><td>PROPN</td><td>nmod</td></tr><tr><td>:</td><td>:</td><td>PUNCT</td><td>punct</td></tr><tr><td>L'</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>Aube</td><td>Aube</td><td>PROPN</td><td>nmod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>la</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>justice</td><td>justice</td><td>NOUN</td><td>nmod</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>2016</td><td>2016</td><td>NUM</td><td>nummod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>Justice</td><td>Justice</td><td>PROPN</td><td>conj</td></tr><tr><td>League</td><td>League</td><td>PROPN</td><td>flat:name</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>2017</td><td>2017</td><td>NUM</td><td>nummod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>Zack</td><td>Zack</td><td>PROPN</td><td>ROOT</td></tr><tr><td>Snyder'</td><td>snyder'</td><td>DET</td><td>flat:foreign</td></tr><tr><td>s</td><td>s</td><td>PRON</td><td>det</td></tr><tr><td>Justice</td><td>Justice</td><td>PROPN</td><td>dep</td></tr><tr><td>League</td><td>League</td><td>PROPN</td><td>flat:name</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>2021</td><td>2021</td><td>NUM</td><td>nummod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>Black</td><td>Black</td><td>PROPN</td><td>conj</td></tr><tr><td>Adam</td><td>Adam</td><td>PROPN</td><td>flat:name</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>2022</td><td>2022</td><td>NUM</td><td>nummod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>dont</td><td>dont</td><td>PRON</td><td>nmod</td></tr><tr><td>trois</td><td>trois</td><td>NUM</td><td>nummod</td></tr><tr><td>réalisés</td><td>réaliser</td><td>VERB</td><td>acl:relcl</td></tr><tr><td>par</td><td>par</td><td>ADP</td><td>case</td></tr><tr><td>Zack</td><td>Zack</td><td>PROPN</td><td>obl:agent</td></tr><tr><td>Snyder</td><td>Snyder</td><td>PROPN</td><td>flat:name</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>Il</td><td>il</td><td>PRON</td><td>expl:subj</td></tr><tr><td>incarne</td><td>incarner</td><td>VERB</td><td>ROOT</td></tr><tr><td>aussi</td><td>aussi</td><td>ADV</td><td>advmod</td></tr><tr><td>Sherlock</td><td>Sherlock</td><td>PROPN</td><td>obj</td></tr><tr><td>Holmes</td><td>Holmes</td><td>PROPN</td><td>flat:name</td></tr><tr><td>dans</td><td>dans</td><td>ADP</td><td>case</td></tr><tr><td>les</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>films</td><td>film</td><td>NOUN</td><td>obl:mod</td></tr><tr><td>Netflix</td><td>Netflix</td><td>PROPN</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>Enola</td><td>enola</td><td>NOUN</td><td>nmod</td></tr><tr><td>Holmes</td><td>Holmes</td><td>PROPN</td><td>flat:name</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>Enola</td><td>enola</td><td>NOUN</td><td>conj</td></tr><tr><td>Holmes</td><td>Holmes</td><td>PROPN</td><td>flat:name</td></tr><tr><td>2</td><td>2</td><td>NUM</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>respectivement</td><td>respectivement</td><td>ADV</td><td>advmod</td></tr><tr><td>sortis</td><td>sortir</td><td>VERB</td><td>xcomp</td></tr><tr><td>en</td><td>en</td><td>ADP</td><td>case</td></tr><tr><td>2020</td><td>2020</td><td>NUM</td><td>obl:mod</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>2022</td><td>2022</td><td>NUM</td><td>conj</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>De</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>2019</td><td>2019</td><td>NUM</td><td>obl:mod</td></tr><tr><td>à</td><td>à</td><td>ADP</td><td>case</td></tr><tr><td>2023</td><td>2023</td><td>NUM</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>il</td><td>il</td><td>PRON</td><td>nsubj</td></tr><tr><td>est</td><td>être</td><td>AUX</td><td>cop</td></tr><tr><td>l'</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>interprète</td><td>interprète</td><td>NOUN</td><td>ROOT</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Geralt</td><td>Geralt</td><td>PROPN</td><td>nmod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Riv</td><td>Riv</td><td>PROPN</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>personnage</td><td>personnage</td><td>NOUN</td><td>appos</td></tr><tr><td>principal</td><td>principal</td><td>ADJ</td><td>amod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>la</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>série</td><td>série</td><td>NOUN</td><td>nmod</td></tr><tr><td>The</td><td>The</td><td>X</td><td>appos</td></tr><tr><td>Witcher</td><td>Witcher</td><td>PROPN</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>diffusée</td><td>diffuser</td><td>VERB</td><td>acl</td></tr><tr><td>sur</td><td>sur</td><td>ADP</td><td>case</td></tr><tr><td>Netflix</td><td>Netflix</td><td>PROPN</td><td>obl:arg</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>
+</td><td>
+</td><td>SPACE</td><td>dep</td></tr><tr><td>Biographie</td><td>biographie</td><td>NOUN</td><td>nmod</td></tr><tr><td>
+</td><td>
+</td><td>SPACE</td><td>dep</td></tr><tr><td>Jeunesse</td><td>Jeunesse</td><td>PROPN</td><td>flat:name</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>formation</td><td>formation</td><td>NOUN</td><td>conj</td></tr><tr><td>
+
+</td><td>
+
+</td><td>SPACE</td><td>dep</td></tr><tr><td>Originaire</td><td>originaire</td><td>ADJ</td><td>ROOT</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Jersey</td><td>Jersey</td><td>PROPN</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>dans</td><td>dans</td><td>ADP</td><td>case</td></tr><tr><td>les</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>îles</td><td>île</td><td>ADJ</td><td>obl:mod</td></tr><tr><td>anglo-normandes</td><td>anglo-normand</td><td>NOUN</td><td>amod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>Henry</td><td>Henry</td><td>PROPN</td><td>nsubj</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>flat:name</td></tr><tr><td>y</td><td>y</td><td>PRON</td><td>expl:comp</td></tr><tr><td>a</td><td>avoir</td><td>VERB</td><td>ROOT</td></tr><tr><td>grandi</td><td>grandir</td><td>VERB</td><td>obj</td></tr><tr><td>avec</td><td>avec</td><td>ADP</td><td>case</td></tr><tr><td>ses</td><td>son</td><td>DET</td><td>det</td></tr><tr><td>deux</td><td>deux</td><td>NUM</td><td>nummod</td></tr><tr><td>parents</td><td>parent</td><td>NOUN</td><td>obl:mod</td></tr><tr><td>;</td><td>;</td><td>PUNCT</td><td>punct</td></tr><tr><td>Marianne</td><td>marianne</td><td>NOUN</td><td>ROOT</td></tr><tr><td>Dalgliesh</td><td>Dalgliesh</td><td>PROPN</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>secrétaire</td><td>secrétaire</td><td>NOUN</td><td>appos</td></tr><tr><td>dans</td><td>dans</td><td>ADP</td><td>case</td></tr><tr><td>une</td><td>un</td><td>DET</td><td>det</td></tr><tr><td>banque</td><td>banque</td><td>NOUN</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>d'</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>origine</td><td>origine</td><td>NOUN</td><td>nmod</td></tr><tr><td>irlandaise</td><td>irlandais</td><td>ADJ</td><td>amod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>écossaise</td><td>écossais</td><td>ADJ</td><td>amod</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>anglaise</td><td>anglaise</td><td>NOUN</td><td>conj</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>Colin</td><td>Colin</td><td>PROPN</td><td>conj</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>agent</td><td>agent</td><td>ADV</td><td>amod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>change</td><td>change</td><td>NOUN</td><td>obl:arg</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>originaire</td><td>originaire</td><td>ADJ</td><td>amod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Chester1</td><td>chester1</td><td>NOUN</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>ainsi</td><td>ainsi</td><td>ADV</td><td>cc</td></tr><tr><td>qu'</td><td>que</td><td>SCONJ</td><td>fixed</td></tr><tr><td>avec</td><td>avec</td><td>ADP</td><td>case</td></tr><tr><td>ses</td><td>son</td><td>DET</td><td>det</td></tr><tr><td>quatre</td><td>quatre</td><td>NUM</td><td>nummod</td></tr><tr><td>frères</td><td>frère</td><td>NOUN</td><td>conj</td></tr><tr><td>;</td><td>;</td><td>PUNCT</td><td>punct</td></tr><tr><td>Piers</td><td>Piers</td><td>PROPN</td><td>ROOT</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>flat:name</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>Niki</td><td>Niki</td><td>PROPN</td><td>nmod</td></tr><tr><td>Richard</td><td>Richard</td><td>PROPN</td><td>ROOT</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>ROOT</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>né</td><td>naître</td><td>VERB</td><td>ROOT</td></tr><tr><td>en</td><td>en</td><td>ADP</td><td>case</td></tr><tr><td>1975</td><td>1975</td><td>NUM</td><td>obl:mod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>Simon</td><td>Simon</td><td>PROPN</td><td>ROOT</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>flat:name</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>né</td><td>naître</td><td>VERB</td><td>acl</td></tr><tr><td>en</td><td>en</td><td>ADP</td><td>case</td></tr><tr><td>1979</td><td>1979</td><td>NUM</td><td>obl:mod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>Charlie</td><td>Charlie</td><td>PROPN</td><td>conj</td></tr><tr><td>Cavill</td><td>Cavill</td><td>PROPN</td><td>flat:name</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>né</td><td>naître</td><td>VERB</td><td>acl</td></tr><tr><td>en</td><td>en</td><td>ADP</td><td>case</td></tr><tr><td>1988</td><td>1988</td><td>NUM</td><td>obl:mod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>Il</td><td>il</td><td>PRON</td><td>nsubj:pass</td></tr><tr><td>est</td><td>être</td><td>AUX</td><td>aux:pass</td></tr><tr><td>issu</td><td>issu</td><td>VERB</td><td>ROOT</td></tr><tr><td>d'</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>une</td><td>un</td><td>DET</td><td>det</td></tr><tr><td>famille</td><td>famille</td><td>NOUN</td><td>obl:arg</td></tr><tr><td>catholique</td><td>catholique</td><td>ADJ</td><td>amod</td></tr><tr><td>romaine2</td><td>romaine2</td><td>ADJ</td><td>amod</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>Il</td><td>il</td><td>PRON</td><td>nsubj</td></tr><tr><td>étudie</td><td>étudier</td><td>VERB</td><td>ROOT</td></tr><tr><td>à</td><td>à</td><td>ADP</td><td>case</td></tr><tr><td>la</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>St.</td><td>st.</td><td>NOUN</td><td>obl:arg</td></tr><tr><td>Michael’</td><td>michael’</td><td>ADJ</td><td>nmod</td></tr><tr><td>s</td><td>s</td><td>PRON</td><td>punct</td></tr><tr><td>Preparatory</td><td>preparatory</td><td>VERB</td><td>obj</td></tr><tr><td>School</td><td>School</td><td>PROPN</td><td>flat:name</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>en</td><td>en</td><td>NOUN</td><td>advmod</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Saint-Sauveur</td><td>Saint-Sauveur</td><td>PROPN</td><td>nmod</td></tr><tr><td>avant</td><td>avant</td><td>ADP</td><td>mark</td></tr><tr><td>d'</td><td>de</td><td>ADP</td><td>mark</td></tr><tr><td>intégrer</td><td>intégrer</td><td>VERB</td><td>advcl</td></tr><tr><td>l'</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>internat</td><td>internat</td><td>NOUN</td><td>obj</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>la</td><td>le</td><td>DET</td><td>det</td></tr><tr><td>Stowe</td><td>Stowe</td><td>PROPN</td><td>nmod</td></tr><tr><td>School</td><td>School</td><td>PROPN</td><td>flat:name</td></tr><tr><td>(</td><td>(</td><td>PUNCT</td><td>punct</td></tr><tr><td>en</td><td>en</td><td>NOUN</td><td>appos</td></tr><tr><td>)</td><td>)</td><td>PUNCT</td><td>punct</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>Buckingham</td><td>Buckingham</td><td>PROPN</td><td>nmod</td></tr><tr><td>,</td><td>,</td><td>PUNCT</td><td>punct</td></tr><tr><td>où</td><td>où</td><td>PRON</td><td>iobj</td></tr><tr><td>il</td><td>il</td><td>PRON</td><td>nsubj</td></tr><tr><td>fait</td><td>faire</td><td>VERB</td><td>acl:relcl</td></tr><tr><td>ses</td><td>son</td><td>DET</td><td>det</td></tr><tr><td>premières</td><td>premier</td><td>ADJ</td><td>amod</td></tr><tr><td>gammes</td><td>gamme</td><td>NOUN</td><td>obj</td></tr><tr><td>en</td><td>en</td><td>ADP</td><td>case</td></tr><tr><td>tant</td><td>tant</td><td>ADV</td><td>fixed</td></tr><tr><td>qu'</td><td>que</td><td>SCONJ</td><td>fixed</td></tr><tr><td>acteur</td><td>acteur</td><td>NOUN</td><td>obl:arg</td></tr><tr><td>et</td><td>et</td><td>CCONJ</td><td>cc</td></tr><tr><td>souffre</td><td>souffre</td><td>NOUN</td><td>conj</td></tr><tr><td>des</td><td>un</td><td>DET</td><td>det</td></tr><tr><td>moqueries</td><td>moquerie</td><td>NOUN</td><td>nmod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>ses</td><td>son</td><td>DET</td><td>det</td></tr><tr><td>camarades</td><td>camarade</td><td>NOUN</td><td>nmod</td></tr><tr><td>à</td><td>à</td><td>ADP</td><td>case</td></tr><tr><td>cause</td><td>cause</td><td>NOUN</td><td>nmod</td></tr><tr><td>de</td><td>de</td><td>ADP</td><td>case</td></tr><tr><td>son</td><td>son</td><td>DET</td><td>det</td></tr><tr><td>embonpoint</td><td>embonpoint</td><td>NOUN</td><td>nmod</td></tr><tr><td>;</td><td>;</td><td>PUNCT</td><td>punct</td></tr><tr><td>ces</td><td>ce</td><td>DET</td><td>det</td></tr><tr><td>derniers</td><td>dernier</td><td>ADJ</td><td>amod</td></tr><tr><td>le</td><td>le</td><td>DET</td><td>obj</td></tr><tr><td>surnommant</td><td>surnommant</td><td>ADJ</td><td>ROOT</td></tr><tr><td>"</td><td>"</td><td>PUNCT</td><td>punct</td></tr><tr><td>Fat</td><td>fat</td><td>NOUN</td><td>appos</td></tr><tr><td>Cavill"3</td><td>Cavill"3</td><td>PROPN</td><td>flat:name</td></tr><tr><td>.</td><td>.</td><td>PUNCT</td><td>punct</td></tr><tr><td>
+
+</td><td>
+
+</td><td>SPACE</td><td>dep</td></tr></tbody></table>
+</div>
+<div style="position: absolute; right: 10%">
+<table border="1" id="table2">
+<tr>
+<th>Mot</th>
+<th>Lemme</th>
+<th>POS</th>
+<th>DEP</th>
+</tr>
+<tr>
+<td>texte</td>
+<td>texte</td>
+<td>texte</td>
+<td>texte</td>
+</tr>
+<tr>
+<td>texte</td>
+<td>texte</td>
+<td>texte</td>
+<td>texte</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
