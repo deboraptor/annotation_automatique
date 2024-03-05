@@ -1,59 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SpaCy</title>
+    <title>Stanza</title>
     <style>
-        table {
-            display: inline-block;
-            margin-right: 20px; 
-            width: 100%;
-        }
+      #table1, #table2 {
+        margin: auto;
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
 
-        th, td {
-            text-align: left; 
-            padding: 8px; 
-        }
+      #metrique {
+        margin: 0 auto;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
 
-        th:first-child, td:first-child {
-            width: 30%; 
-        }
+      th {
+        background-color: rgb(143, 216, 153);
+      }
 
-        th:nth-child(2), td:nth-child(2) {
-            width: 40%; 
-        }
+      td {
+        background-color: rgba(188, 230, 169, 0.87);
+      }
 
-        th:nth-child(3), td:nth-child(3) {
-            width: 30%;
-        }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th:first-child,
+      td:first-child {
+        width: 30%;
+      }
+
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 40%;
+      }
+
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 30%;
+      }
+
+      body {
+        background-color: rgb(195, 243, 185);
+      }
     </style>
 </head>
 <body>
-    <a href="test.html">Retour à l'accueil</a>
-    <h1>Module </h1>
-    <table border="1">
+    <a href="index.html">Retour à l'accueil</a>
+    <h1>Module Stanza</h1>
+    <table border="1" id="metrique">
         <thead>
             <tr>
                 <th>Texte normé</th>
                 <th>Texte non-normé</th>
             </tr>
             <tr>
-                <td>Rappel :</td>
-                <td>Rappel :</td>
-            </tr>
-            <tr>
-                <td>Précision : </td>
-                <td>précision : </td>
-            </tr>
-            <tr>
-                <td>F-mesure : </td>
-                <td>F-mesure : </td>
+                <td class="rappel_norme">Rappel : 1.0</td>
+                <td class="rappel_non_norme">Rappel : 1.0</td>
+              </tr>
+              <tr>
+                <td class="precision_norme">Précision : 0.964562569213732</td>
+                <td class="precision_non_norme">Précision : 0.9559748427672956</td>
+              </tr>
+              <tr>
+                <td class="fmesure_norme">F-mesure : 0.9819616685456595</td>
+                <td class="fmesure_non_norme">F-mesure : 0.977491961414791</td>
             </tr>
         </thead>
     </table>
     <br>
     <br>
-    <div style="position:absolute; left:10%; ">
-        <table border="1">
+    <div style="position:absolute; left: 5%;">
+        <table border="1" id="table1">
             <tr>
                 <th>Mot</th>
                 <th>Lemme</th>
@@ -74,8 +98,8 @@
             </tr>
         </table>
     </div>
-    <div style="position:absolute; right:10%; ">
-        <table border="1">
+    <div style="position:absolute; right: 5%;">
+        <table border="1" id="table2">
             <tr>
                 <th>Mot</th>
                 <th>Lemme</th>
