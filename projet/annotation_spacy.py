@@ -1,6 +1,9 @@
 import spacy
 from sklearn.metrics import precision_score, recall_score, f1_score
 from bs4 import BeautifulSoup as bs
+import difflib
+from prettytable import PrettyTable
+from prettytable.colortable import ColorTable, Themes
 
 from annexe import resultats_norme_moi
 from annexe import resultats_non_norme_moi
@@ -38,7 +41,7 @@ def collecter_texte_norme():
             else:
                 liste_inter.append(0)
         resultats_norme_machine_bin.append(tuple(liste_inter))
-    
+        
     with open("../page1.html", "r") as fichier_page1_metrique:
         page1_metrique = bs(fichier_page1_metrique.read(), "lxml")
 
@@ -93,6 +96,7 @@ def collecter_texte_norme():
     
     with open("../page1.html", "w") as fichier_page1_tableau:
         fichier_page1_tableau.write(str(page1_tableau))
+    return resultats_norme_machine
         
 def collecter_texte_non_norme():
     # On refait le traitement avec spaCy
@@ -182,10 +186,66 @@ def collecter_texte_non_norme():
     
     with open("../page1.html", "w") as fichier_page1_tableau_non_nome:
         fichier_page1_tableau_non_nome.write(str(page1_tableau_non_nome))
+    return resultats_non_norme_machine
+
+def differences_texte_norme(resultats_norme_machine):
+    """ On fait les différences entre la machine et ma correction pour le texte normé. """
+    diff = difflib.ndiff(resultats_norme_machine, resultats_norme_moi)
+
+    mon_changement = []
+    mal_annote_machine = []
+
+    for ligne in diff:
+        if ligne[0] == " ":
+            continue        
+        if ligne[0] == "+":
+            mon_changement.append(ligne[2:])
+        elif ligne[0] == "-":
+            mal_annote_machine.append(ligne[2:])
+
+    table = PrettyTable()
+    table = ColorTable(theme=Themes.OCEAN)
+    table.field_names = ["Mon changement manuel", "Mal annoté par la machine"]
+    table.add_row(["Nombre de lignes différentes", str(len(mal_annote_machine))])
+    
+    for p, d in zip(mon_changement, mal_annote_machine):
+        table.add_row([p, d])
+    print(table)
+
+def differences_texte_non_norme(resultats_non_norme_machine):
+    """ On fait les différences entre la machine et ma correction pour le texte non normé. """
+    
+    # Je converti chaque tuple en chaîne de caractères parce que je sais pas pouruqoi mais ça marche pas
+    resultats_non_norme_machine = [" ".join(t) for t in resultats_non_norme_machine]
+    resultats_non_norme_mon_annotation = [" ".join(t) for t in resultats_non_norme_moi]
+    
+    diff = difflib.ndiff(resultats_non_norme_machine, resultats_non_norme_mon_annotation)
+
+    mon_changement = []
+    mal_annote_machine = []
+
+    for ligne in diff:
+        if ligne[0] == " ":
+            continue
+        if ligne[0] == "+":
+            mon_changement.append(ligne[2:])
+        elif ligne[0] == "-":
+            mal_annote_machine.append(ligne[2:])
+
+    table = PrettyTable()
+    table = ColorTable(theme=Themes.OCEAN)
+    table.field_names = ["Mon changement manuel", "Mal annoté par la machine"]
+    table.add_row(["Nombre de lignes différentes", str(len(mal_annote_machine))])
+
+    for p, d in zip(mon_changement, mal_annote_machine):
+        table.add_row([p, d])
+    print(table)
 
 def main():
-    collecter_texte_non_norme()
-    collecter_texte_norme()
+    resultats_non_norme_machine = collecter_texte_non_norme()
+    resultats_norme_machine = collecter_texte_norme()
+    differences_texte_norme(resultats_norme_machine)
+    differences_texte_non_norme(resultats_non_norme_machine)
 
 if __name__ == "__main__":
     main()
