@@ -22,10 +22,10 @@ def collecter_texte_norme():
     resultats_norme_machine = []
     for sentence in doc.sentences:
         for token in sentence.tokens:
-            ligne_token = token.text
-            ligne_lemme = token.lemma_
-            ligne_pos = token.pos
-            ligne_dep = token.deprel
+            ligne_token = getattr(token, 'text', '')
+            ligne_lemme = getattr(token, 'lemma', '')
+            ligne_pos = getattr(token, 'pos', '')
+            ligne_dep = getattr(token, 'deprel', '')
             lignes.append([ligne_token, ligne_lemme, ligne_pos, ligne_dep])
             # Je crée une liste de tuples pour que ce soit plus simple à faire la f-mesure
             tuple_res = (ligne_token, ligne_lemme, ligne_pos)
@@ -47,6 +47,17 @@ def collecter_texte_norme():
         page2_metrique = bs(fichier_page2_metrique.read(), "lxml")
 
     # Calculer les métriques de précision, rappel et F-mesure
+    while len(resultats_norme_machine_bin) < len(resultats_norme_moi_bin):
+        resultats_norme_machine_bin.append((0, 0, 0))
+
+    while len(resultats_norme_moi_bin) < len(resultats_norme_machine_bin):
+        resultats_norme_moi_bin.append((0, 0, 0))    
+    try:
+        precision = precision_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
+    except ValueError:
+        print("Les tableaux resultats_non_norme_machine_bin et resultats_non_norme_moi_bin n'ont pas la même longueur. Le calcul de la métrique de précision est ignoré.")
+        precision = None
+
     precision = precision_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
     rappel = recall_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
     fmesure = f1_score(resultats_norme_machine_bin, resultats_norme_moi_bin, average="micro", zero_division=1)
@@ -111,10 +122,10 @@ def collecter_texte_non_norme():
     resultats_non_norme_machine = []
     for sentence in doc.sentences:
         for token in sentence.tokens:
-            ligne_token = token.text
-            ligne_lemme = token.lemma_
-            ligne_pos = token.pos
-            ligne_dep = token.deprel
+            ligne_token = getattr(token, 'text', '')
+            ligne_lemme = getattr(token, 'lemma', '')
+            ligne_pos = getattr(token, 'pos', '')
+            ligne_dep = getattr(token, 'deprel', '')
             lignes.append([ligne_token, ligne_lemme, ligne_pos, ligne_dep])
             # Je crée une liste de tuples pour que ce soit plus simple à faire la f-mesure
             tuple_res = (ligne_token, ligne_lemme, ligne_pos)
@@ -136,7 +147,17 @@ def collecter_texte_non_norme():
         page2_metrique = bs(fichier_page2_metrique.read(), "lxml")
 
     # Calculer les métriques de précision, rappel et F-mesure
-    precision = precision_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
+    while len(resultats_non_norme_machine_bin) < len(resultats_non_norme_moi_bin):
+        resultats_non_norme_machine_bin.append((0, 0, 0))
+
+    while len(resultats_non_norme_moi_bin) < len(resultats_non_norme_machine_bin):
+        resultats_non_norme_moi_bin.append((0, 0, 0))    
+    try:
+        precision = precision_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
+    except ValueError:
+        print("Les tableaux resultats_non_norme_machine_bin et resultats_non_norme_moi_bin n'ont pas la même longueur. Le calcul de la métrique de précision est ignoré.")
+        precision = None
+
     rappel = recall_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
     fmesure = f1_score(resultats_non_norme_machine_bin, resultats_non_norme_moi_bin, average="micro", zero_division=1)
 
