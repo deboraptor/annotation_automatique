@@ -207,6 +207,7 @@ def differences_texte_norme(resultats_norme_machine):
     table = ColorTable(theme=Themes.OCEAN)
     table.field_names = ["Mon changement manuel", "Mal annoté par la machine"]
     table.add_row(["Nombre de lignes différentes", str(len(mal_annote_machine))])
+    table.add_row([" ", " "])
     
     for p, d in zip(mon_changement, mal_annote_machine):
         table.add_row([p, d])
@@ -236,6 +237,7 @@ def differences_texte_non_norme(resultats_non_norme_machine):
     table = ColorTable(theme=Themes.OCEAN)
     table.field_names = ["Mon changement manuel", "Mal annoté par la machine"]
     table.add_row(["Nombre de lignes différentes", str(len(mal_annote_machine))])
+    table.add_row([" ", " "])
 
     for p, d in zip(mon_changement, mal_annote_machine):
         table.add_row([p, d])
